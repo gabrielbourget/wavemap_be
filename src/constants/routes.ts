@@ -6,6 +6,8 @@ export const FE_RESET_PASSWORD_ROUTE = "/reset-password";
 export const FE_ACCOUNT_VERIFICATION_ROUTE = "/account-verification";
 export const FE_REGISTRATION_ROUTE = "/registration";
 
+export const BASE_URL = "/";
+
 // -> Artists
 export const ARTIST = "/artist";
 export const ARTISTS = "/artists";
