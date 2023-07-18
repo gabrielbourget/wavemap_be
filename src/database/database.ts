@@ -10,18 +10,19 @@ const {
 } = process.env
 
 export const connectDB = async () => {
-  // const connectionString = DB_URL;
+  const connectionString = DB_URL;
+  const client = new Client({ connectionString });
 
-  // const client = new Client({ connectionString });
-  const client = new Client({
-    host: DB_HOST,
-    user: DB_USER,
-    port: parseInt(DB_PORT),
-    password: DB_PASSWORD,
-    database: DB_DATABASE
-  })
-  await client.connect();
+  // const client = new Client({
+  //   host: DB_HOST,
+  //   user: DB_USER,
+  //   port: parseInt(DB_PORT),
+  //   password: DB_PASSWORD,
+  //   database: DB_DATABASE
+  // })
+  // await client.connect();
   
   const db: NodePgDatabase<typeof schema> = drizzle(client, { schema });
+  // console.log(db);
   return db;
 };

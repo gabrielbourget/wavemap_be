@@ -4,24 +4,32 @@ import { EVENT, EVENTS } from "src/constants/routes.ts";
 
 const eventRouter = Router();
 
-eventRouter.route(EVENT).get(async (req: Request, res: Response) => {
+const getEvent = async (req: Request, res: Response) => {
 
-});
+};
 
-eventRouter.route(EVENTS).get(async (req: Request, res: Response) => {
-  
-});
+const getEvents = async (req: Request, res: Response) => {
 
-eventRouter.route(EVENT).post(async (req: Request, res: Response) => {
+};
 
-});
+const createEvent = async (req: Request, res: Response) => {
 
-eventRouter.route(EVENT).put(async (req: Request, res: Response) => {
+};
 
-});
+const editEvent = async (req: Request, res: Response) => {
 
-eventRouter.route(EVENT).delete(async (req: Request, res: Response) => {
+};
 
-});
+const deleteEvent = async (req: Request, res: Response) => {
 
-export default eventRouter;
+};
+
+export default (eventRouter: Router): Router => {
+  eventRouter.get(EVENT, getEvent);
+  eventRouter.get(EVENTS, getEvents);
+  eventRouter.post(EVENT, createEvent);
+  eventRouter.put(EVENT, editEvent);
+  eventRouter.delete(EVENT, deleteEvent);
+
+  return eventRouter;
+};

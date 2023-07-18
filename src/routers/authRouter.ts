@@ -8,44 +8,57 @@ import {
 
 const authRouter = Router();
 
-authRouter.route(LOGIN).post(async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response) => {
 
-});
+};
 
-authRouter.route(LOGOUT).post(async (req: Request, res: Response) => {
-  
-});
+const logout = async (req: Request, res: Response) => {
 
-authRouter.route(REGISTRATION).post(async (req: Request, res: Response) => {
+};
 
-});
+const registration = async (req: Request, res: Response) => {
 
-authRouter.route(SEND_REGISTRATION_INVITATION).put(async (req: Request, res: Response) => {
+};
 
-});
+const sendRegistrationInvitation = async (req: Request, res: Response) => {
 
-authRouter.route(REVOKE_REFRESH_TOKEN).post(async (req: Request, res: Response) => {
+};
 
-});
+const revokeRefreshToken = async (req: Request, res: Response) => {
 
-authRouter.route(VALIDATE_ACCT_VERIFICATION).post(async (req: Request, res: Response) => {
+};
 
-});
+const validateAccountVerification = async (req: Request, res: Response) => {
 
-authRouter.route(RESEND_ACCT_VERIFICATION).post(async (req: Request, res: Response) => {
+};
 
-});
+const resendAccountVerification = async (req: Request, res: Response) => {
 
-authRouter.route(REQUEST_PASSWORD_RESET).post(async (req: Request, res: Response) => {
+};
 
-});
+const requestPasswordReset = async (req: Request, res: Response) => {
 
-authRouter.route(RESET_PASSWORD).post(async (req: Request, res: Response) => {
+};
 
-});
+const resetPassword = async (req: Request, res: Response) => {
 
-authRouter.route(CHANGE_PASSWORD).patch(async (req: Request, res: Response) => {
+};
 
-});
+const changePassword = async (req: Request, res: Response) => {
 
-export default authRouter;
+};
+
+export default (authRouter: Router): Router => {
+  authRouter.post(LOGIN, login);
+  authRouter.post(LOGOUT, logout);
+  authRouter.post(REGISTRATION, registration);
+  authRouter.post(SEND_REGISTRATION_INVITATION, sendRegistrationInvitation);
+  authRouter.post(REVOKE_REFRESH_TOKEN, revokeRefreshToken);
+  authRouter.post(VALIDATE_ACCT_VERIFICATION, validateAccountVerification);
+  authRouter.post(RESEND_ACCT_VERIFICATION, resendAccountVerification);
+  authRouter.post(REQUEST_PASSWORD_RESET, requestPasswordReset);
+  authRouter.post(RESET_PASSWORD, resetPassword);
+  authRouter.post(CHANGE_PASSWORD, changePassword);
+
+  return authRouter;
+};

@@ -4,24 +4,32 @@ import { USER, USERS } from "src/constants/routes.ts";
 
 const userRouter = Router();
 
-userRouter.route(USER).get(async (req: Request, res: Response) => {
+const getUser = async (req: Request, res: Response) => {
 
-});
+};
 
-userRouter.route(USERS).get(async (req: Request, res: Response) => {
-  
-});
+const getUsers = async (req: Request, res: Response) => {
 
-userRouter.route(USER).post(async (req: Request, res: Response) => {
+};
 
-});
+const createUser = async (req: Request, res: Response) => {
 
-userRouter.route(USER).put(async (req: Request, res: Response) => {
+};
 
-});
+const editUser = async (req: Request, res: Response) => {
 
-userRouter.route(USER).delete(async (req: Request, res: Response) => {
+};
 
-});
+const deleteUser = async (req: Request, res: Response) => {
 
-export default userRouter;
+};
+
+export default (userRouter: Router): Router => {
+  userRouter.get(USER, getUser);
+  userRouter.get(USERS, getUsers);
+  userRouter.post(USER, createUser);
+  userRouter.put(USER, editUser);
+  userRouter.delete(USER, deleteUser);
+
+  return userRouter;
+};

@@ -4,24 +4,32 @@ import { VENUE, VENUES } from "src/constants/routes.ts";
 
 const venueRouter = Router();
 
-venueRouter.route(VENUE).get(async (req: Request, res: Response) => {
+const getVenue = async (req: Request, res: Response) => {
 
-});
+};
 
-venueRouter.route(VENUES).get(async (req: Request, res: Response) => {
-  
-});
+const getVenues = async (req: Request, res: Response) => {
 
-venueRouter.route(VENUE).post(async (req: Request, res: Response) => {
+};
 
-});
+const createVenue = async (req: Request, res: Response) => {
 
-venueRouter.route(VENUE).put(async (req: Request, res: Response) => {
+};
 
-});
+const editVenue = async (req: Request, res: Response) => {
 
-venueRouter.route(VENUE).delete(async (req: Request, res: Response) => {
+};
 
-});
+const deleteVenue = async (req: Request, res: Response) => {
 
-export default venueRouter;
+};
+
+export default (venueRouter: Router): Router => {
+  venueRouter.get(VENUE, getVenue);
+  venueRouter.get(VENUES, getVenues);
+  venueRouter.post(VENUE, createVenue);
+  venueRouter.put(VENUE, editVenue);
+  venueRouter.delete(VENUE, deleteVenue);
+
+  return venueRouter;
+};

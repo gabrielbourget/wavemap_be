@@ -10,7 +10,8 @@ import auth from "./authRouter.ts";
 const router = Router();
 
 export default (): Router => {
-  // artists(router);
+  artists(router);
+  events(router);
 
   return router;
-}
+};
