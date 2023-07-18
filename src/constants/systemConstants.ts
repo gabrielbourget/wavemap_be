@@ -9,14 +9,7 @@ export const ACCT_VERIFICATION_JWT_LIFETIME = "7d";
 export const REFRESH_TOKEN_COOKIE_KEY = "wrt";
 export const AUTH_HEADER_KEY = "authorization";
 
-export const REFRESH_TOKEN_ROUTE = "/refresh-token";
-export const USER_DURING_TOKEN_REFRESH_ROUTE = "/token-refresh-get-user"
-
-export const FE_RESET_PASSWORD_ROUTE = "/reset-password";
-export const FE_ACCOUNT_VERIFICATION_ROUTE = "/account-verification";
-export const FE_REGISTRATION_ROUTE = "/registration";
-
-export const APP_NAME = "WaveMap Backend";
+export const APP_NAME = "Wavemap Backend";
 
 export const NUM_BYTES_TOTP_SECRET = 32;
 export const NUMBER_OF_PASSWORD_SALTING_ROUNDS = 12;
