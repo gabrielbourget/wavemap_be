@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wavemap Administrator Registration Invitation</title>
+    <style>
+      html {
+        box-sizing: border-box; /* Include padding and border as part of element width and height */
+      }
+
+      h1, p {
+        margin: 0
+      }
+
+      a:link {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:visited {
+        text-decoration: none;
+        color: black;
+      }
+
+      .emailCradle {
+        height: auto;
+        width: auto;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* background-color: #e4b8f9; */
+        background-image: linear-gradient(0deg, #e4b8f9, #f6e7fd);
+        background-repeat: no-repeat;
+      }
+
+      .registrationCodeCradle {
+        height: auto;
+        width: auto;
+        padding: 10px;
+        border: 2px solid #9611d8;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .registrationCodeHintText {
+        font-family: "Arial";
+        font-size: 12pt;
+        color: black;
+      }
+
+      .registrationCodeText {
+        font-family: "Arial";
+        font-weight: bold;
+        color: black;
+        font-size: 12pt;
+      }
+
+      .titleText {
+        font-family: "Arial";
+        font-size: 20pt;
+        color: black;
+        text-align: center;
+      }
+
+      .bodyText {
+        font-family: "Arial";
+        font-size: 14pt;
+        color: black;
+        text-align: center;
+      }
+
+      .regBtnCradle {
+        padding: 10px;
+        background-color: #9611d8;
+        border-radius: 4px;
+      }
+
+      .regBtnText {
+        font-family: "Arial";
+        font-size: 12pt;
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="emailCradle">
+    <img
+      height="10%" width="10%"
+      src="https://res.cloudinary.com/dp2ss8bnf/image/upload/v1633493060/Wavemap/WaveIcon_gopbyz.png"
+      alt="Logo for Wavemap - [includes three wavy black lines stacked vertically one on top of the other]"
+    >
+    <div style="margin-top: 10px"></div>
+    <h1 class="titleText">Thank you for your interest in Wavemap</h1>
+    <div style="margin-top: 20px"></div>
+    <p class="bodyText">In order to register for your administrator account, click on the link below and use the code provided in this email.</p>
+    <div style="margin-top: 15px"></div>
+    <div class="registrationCodeCradle">
+      <p class="registrationCodeHintText">REGISTRATION CODE</p>
+      <div style="margin-top: 10px"></div>
+      <p class="registrationCodeText">aklsjdhfasljdfhalsjkdfhkajsdf</p> <!-- TODO: -> Splice in dynamic value -->
+    </div>
+    <div style="margin-top: 15px"></div>
+    <!-- TODO: -> Splice in dynamic value -->
+    <a
+      href="http://127.0.0.1:3000/registration" 
+      class="regBtnCradle"
+      rel="noopener noreferrer"
+      target="_blank"
+    ><p class="regBtnText">Register for your Account</p></a> 
+  </body>
+</html>
