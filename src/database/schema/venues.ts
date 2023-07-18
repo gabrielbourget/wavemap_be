@@ -2,7 +2,7 @@ import { relations } from "drizzle-orm";
 import {
   text, timestamp, pgTable, uuid, integer, index, uniqueIndex, real,
 } from "drizzle-orm/pg-core";
-import { Cities, Countries, EventsVenues, Users } from ".";
+import { Cities, Countries, EventsVenues, Users } from "./index.ts";
 
 export const Venues = pgTable('Venues', {
   ID: uuid('ID').primaryKey(),

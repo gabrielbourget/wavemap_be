@@ -3,7 +3,7 @@ import {
   text, timestamp, pgTable, uuid, boolean, integer,
   index, uniqueIndex, real,
 } from "drizzle-orm/pg-core";
-import { EventLinkDestinations, EventTicketLinkDestinations, EventsEventSeries, Users } from ".";
+import { EventLinkDestinations, EventTicketLinkDestinations, EventsEventSeries, Users } from "./index.ts";
 
 export const EventSeries = pgTable('EventSeries', {
   ID: uuid('ID').primaryKey(),
