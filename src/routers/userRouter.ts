@@ -23,3 +23,5 @@ userRouter.route(USER).put(async (req: Request, res: Response) => {
 userRouter.route(USER).delete(async (req: Request, res: Response) => {
 
 });
+
+export default userRouter;

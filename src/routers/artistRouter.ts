@@ -23,3 +23,5 @@ artistRouter.route(ARTIST).put(async (req: Request, res: Response) => {
 artistRouter.route(ARTIST).delete(async (req: Request, res: Response) => {
 
 });
+
+export default artistRouter;

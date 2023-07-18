@@ -23,3 +23,5 @@ venueRouter.route(VENUE).put(async (req: Request, res: Response) => {
 venueRouter.route(VENUE).delete(async (req: Request, res: Response) => {
 
 });
+
+export default venueRouter;

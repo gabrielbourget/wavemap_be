@@ -23,3 +23,5 @@ eventRouter.route(EVENT).put(async (req: Request, res: Response) => {
 eventRouter.route(EVENT).delete(async (req: Request, res: Response) => {
 
 });
+
+export default eventRouter;

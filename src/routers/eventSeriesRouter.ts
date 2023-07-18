@@ -24,3 +24,5 @@ eventSeriesRouter.route(EVENT_SERIES).put(async (req: Request, res: Response) =>
 eventSeriesRouter.route(EVENT_SERIES).delete(async (req: Request, res: Response) => {
 
 });
+
+export default eventSeriesRouter;
