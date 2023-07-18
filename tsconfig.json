@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "baseUrl": "src",
     "outDir": "dist" ,
     "sourceMap": true,
     "noImplicitAny": true,
     "allowImportingTsExtensions": true,
     "noEmit": true,
+    "checkJs": true,
+    "removeComments": true
   },
   "ts-node": {
     "esm": true
