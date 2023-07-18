@@ -4,7 +4,7 @@ import * as schema from "./schema/index.ts";
 
 const { DB_URL } = process.env
 
-export const connectDB_postgres = async () => {
+export const connectDB = async () => {
   const connectionString = DB_URL;
 
   const client = new Client({ connectionString });
