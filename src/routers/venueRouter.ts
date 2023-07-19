@@ -27,7 +27,7 @@ export default (venueRouter: Router): Router => {
   venueRouter.get(VENUE, getVenue);
   venueRouter.get(VENUES, getVenues);
   venueRouter.post(VENUE, createVenue);
-  venueRouter.put(VENUE, editVenue);
+  venueRouter.patch(VENUE, editVenue);
   venueRouter.delete(VENUE, deleteVenue);
 
   return venueRouter;

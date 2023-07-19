@@ -27,7 +27,7 @@ export default (artistRouter: Router): Router => {
   artistRouter.get(ARTIST, getArtist);
   artistRouter.get(ARTISTS, getArtists);
   artistRouter.post(ARTIST, createArtist);
-  artistRouter.put(ARTIST, editArtist);
+  artistRouter.patch(ARTIST, editArtist);
   artistRouter.delete(ARTIST, deleteArtist);
 
   return artistRouter;

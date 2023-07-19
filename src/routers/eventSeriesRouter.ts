@@ -27,7 +27,7 @@ export default (eventSeriesRouter: Router): Router => {
   eventSeriesRouter.get(EVENT_SERIES, getEventSeries);
   eventSeriesRouter.get(MANY_EVENT_SERIES, getManyEventSeries);
   eventSeriesRouter.post(EVENT_SERIES, createEventSeries);
-  eventSeriesRouter.put(EVENT_SERIES, editEventSeries);
+  eventSeriesRouter.patch(EVENT_SERIES, editEventSeries);
   eventSeriesRouter.delete(EVENT_SERIES, deleteEventSeries);
 
   return eventSeriesRouter;

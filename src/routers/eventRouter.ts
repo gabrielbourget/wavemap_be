@@ -27,7 +27,7 @@ export default (eventRouter: Router): Router => {
   eventRouter.get(EVENT, getEvent);
   eventRouter.get(EVENTS, getEvents);
   eventRouter.post(EVENT, createEvent);
-  eventRouter.put(EVENT, editEvent);
+  eventRouter.patch(EVENT, editEvent);
   eventRouter.delete(EVENT, deleteEvent);
 
   return eventRouter;

@@ -27,7 +27,7 @@ export default (userRouter: Router): Router => {
   userRouter.get(USER, getUser);
   userRouter.get(USERS, getUsers);
   userRouter.post(USER, createUser);
-  userRouter.put(USER, editUser);
+  userRouter.patch(USER, editUser);
   userRouter.delete(USER, deleteUser);
 
   return userRouter;
