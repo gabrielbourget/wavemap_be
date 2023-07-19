@@ -6,7 +6,10 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
 
+import router from "./routers/index.ts";
 import { connectDB } from "./database/database.ts";
+import { BASE_URL } from "./constants/routes.ts";
+
 // import {
 //   AUTH_HEADER_KEY, REFRESH_TOKEN_COOKIE_KEY,
 //   REFRESH_TOKEN_ROUTE, USER_DURING_TOKEN_REFRESH_ROUTE
@@ -33,8 +36,10 @@ const {
   app.use(cookieParser(COOKIE_SIGNING_SECRET));
   app.use(compression());
   app.use(bodyParser.json());
+
+  app.use(BASE_URL, router);
   
   const server = http.createServer(app);
   
   server.listen(SERVER_PORT, () => console.log(`wavemap backend running on port ${SERVER_PORT}`));
-})();
+})(); 

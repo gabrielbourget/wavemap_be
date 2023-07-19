@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { EVENT_SERIES, MANY_EVENT_SERIES } from "src/constants/routes.ts";
+import { EVENT_SERIES, MANY_EVENT_SERIES } from "../constants/routes.ts";
 
 const eventSeriesRouter = Router();
 

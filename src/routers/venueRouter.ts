@@ -1,6 +1,5 @@
 import { Router, Request, Response } from "express";
-
-import { VENUE, VENUES } from "src/constants/routes.ts";
+import { VENUE, VENUES } from "../constants/routes.ts";
 
 const venueRouter = Router();
 

@@ -1,6 +1,5 @@
 import { Router, Request, Response } from "express";
-
-import { EVENT, EVENTS } from "src/constants/routes.ts";
+import { EVENT, EVENTS } from "../constants/routes.ts";
 
 const eventRouter = Router();
 

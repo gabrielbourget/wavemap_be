@@ -4,9 +4,7 @@ import {
   LOGIN, LOGOUT, REGISTRATION, SEND_REGISTRATION_INVITATION,
   REVOKE_REFRESH_TOKEN, VALIDATE_ACCT_VERIFICATION, RESEND_ACCT_VERIFICATION,
   REQUEST_PASSWORD_RESET, RESET_PASSWORD, CHANGE_PASSWORD
-} from "src/constants/index.ts";
-
-const authRouter = Router();
+} from "../constants/index.ts";
 
 const login = async (req: Request, res: Response) => {
 

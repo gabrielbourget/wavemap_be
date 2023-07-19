@@ -1,6 +1,5 @@
 import { Router, Request, Response } from "express";
-
-import { ARTIST, ARTISTS } from "src/constants/routes.ts";
+import { ARTIST, ARTISTS } from "../constants/routes.ts";
 
 const artistRouter = Router();
 
