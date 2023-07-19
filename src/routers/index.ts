@@ -7,15 +7,15 @@ import venues from "./venueRouter.ts";
 import users from "./userRouter.ts";
 import auth from "./authRouter.ts";
 
-const mainRouter = Router();
+const appRouter = Router();
 
 export default (): Router => {
-  artists(mainRouter);
-  events(mainRouter);
-  eventSeries(mainRouter);
-  venues(mainRouter);
-  users(mainRouter);
-  auth(mainRouter);
+  artists(appRouter);
+  events(appRouter);
+  eventSeries(appRouter);
+  venues(appRouter);
+  users(appRouter);
+  auth(appRouter);
 
-  return mainRouter;
+  return appRouter;
 };

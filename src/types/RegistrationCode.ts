@@ -1,7 +1,5 @@
-import { ObjectId } from "mongodb";
-
 export interface IRegistrationCode {
-  _id: ObjectId;
+  id: string;
   code: string;
   wasUsed: boolean;
   wasIssued?: boolean;

@@ -1,14 +1,10 @@
-import { Request, Response } from "apollo-server-express/node_modules/@types/express/index";
-import { IDatabase } from ".";
-// import DataLoader from "dataloader";
+import type { Request, Response } from "express";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
-import * as schema from "../Database/schema";
+import * as schema from "../database/schema/index.ts";
 
 export interface IContext {
   accessToken?: string;
-  db: IDatabase;
   db_postgres: NodePgDatabase<typeof schema>
   req: Request;
   res: Response;
-  dataLoaders: any; // - TODO: -> How to strongly type an array of data loaders?
 }

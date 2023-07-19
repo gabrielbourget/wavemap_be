@@ -1,7 +1,6 @@
-import { ObjectId } from "mongodb";
-import { MFAType } from "./MFATypes";
+import { MFAType } from "./MFATypes.ts";
 import { InferModel } from "drizzle-orm";
-import { Users } from "@src/Database/schema";
+import { Users } from "../database/schema/index.ts";
 
 export type DB_User = InferModel<typeof Users>;
 
@@ -34,7 +33,6 @@ export interface IUserMetadata {
 }
 
 export interface IUser {
-  _id: ObjectId;
   id: string;
   username: string;
   imageURL?: string;
@@ -65,5 +63,5 @@ export interface IUpdateUserInput {
 
 export interface IUpdateUserArgs {
   userDetails: IUpdateUserInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }

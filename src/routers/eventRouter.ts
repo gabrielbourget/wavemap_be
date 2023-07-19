@@ -1,7 +1,8 @@
 import { Router, Request, Response } from "express";
 import { EVENT, EVENTS } from "../constants/routes.ts";
+import { connectDB } from "../database/database.ts";
 
-const eventRouter = Router();
+// const db = await connectDB();
 
 const getEvent = async (req: Request, res: Response) => {
 

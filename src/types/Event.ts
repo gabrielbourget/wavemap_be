@@ -1,8 +1,7 @@
-import { ObjectId } from "mongodb";
-import { IUser } from "./User";
-import { Either } from "./utilTypes";
+import { IUser } from "./User.ts";
+import { Either } from "./utilTypes.ts";
 import { InferModel } from "drizzle-orm";
-import { Events } from "@src/Database/schema";
+import { Events } from "../database/schema/index.ts";
 
 export type DB_Event = InferModel<typeof Events>;
 
@@ -33,7 +32,6 @@ export interface EventMetadata {
 }
 
 export type Event = {
-  _id: ObjectId;
   id: string;
   name: string;
   type: EventType;
@@ -73,7 +71,7 @@ export interface ICreateEventInput {
 
 export interface ICreateEventArgs {
   eventDetails: ICreateEventInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }
 
 export interface IEditEventInput {
@@ -96,7 +94,7 @@ export interface IEditEventInput {
 
 export interface IEditEventArgs {
   eventDetails: IEditEventInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }
 
 export interface IDeleteEventInput {

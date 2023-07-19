@@ -1,7 +1,6 @@
-import { ObjectId } from "mongodb";
-import { Person } from "./Person";
+import { Person } from "./Person.ts";
 import { InferModel } from "drizzle-orm";
-import { Artists } from "@src/Database/schema";
+import { Artists } from "../database/schema/index.ts";
 
 export type DB_Artist = InferModel<typeof Artists>;
 
@@ -29,7 +28,6 @@ export interface ArtistMetadata {
 }
 
 export type Artist = {
-  _id: ObjectId;
   id: string;
   name: string;
   imageURL?: string;
@@ -52,7 +50,7 @@ export interface ICreateArtistInput {
 
 export interface ICreateArtistArgs {
   artistDetails: ICreateArtistInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }
 
 export interface IEditArtistInput {
@@ -67,7 +65,7 @@ export interface IEditArtistInput {
 
 export interface IEditArtistArgs {
   artistDetails: IEditArtistInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }
 
 export interface IDeleteArtistInput {

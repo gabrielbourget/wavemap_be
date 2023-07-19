@@ -1,7 +1,8 @@
 import { Router, Request, Response } from "express";
 import { USER, USERS } from "../constants/routes.ts";
+import { connectDB } from "../database/database.ts";
 
-const userRouter = Router();
+// const db = await connectDB();
 
 const getUser = async (req: Request, res: Response) => {
 

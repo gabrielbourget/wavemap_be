@@ -1,6 +1,5 @@
-import { ObjectId } from "mongodb";
 import { InferModel } from "drizzle-orm";
-import { Venues } from "@src/Database/schema";
+import { Venues } from "../database/schema/index.ts";
 
 export type DB_Venue = InferModel<typeof Venues>;
 
@@ -28,7 +27,6 @@ export interface VenueMetadata {
 }
 
 export interface Venue {
-  _id: ObjectId;
   id: string;
   name: string;
   description?: string;
@@ -82,7 +80,7 @@ export interface ICreateVenueInput {
 
 export interface ICreateVenueArgs {
   venueDetails: ICreateVenueInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }
 
 export interface IEditVenueInput {
@@ -104,7 +102,7 @@ export interface IEditVenueInput {
 
 export interface IEditVenueArgs {
   venueDetails: IEditVenueInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }
 
 export interface IDeleteVenueInput {

@@ -1,7 +1,8 @@
 import { Router, Request, Response } from "express";
 import { ARTIST, ARTISTS } from "../constants/routes.ts";
+import { connectDB } from "../database/database.ts";
 
-const artistRouter = Router();
+// const db = await connectDB();
 
 const getArtist = async (req: Request, res: Response) => {
 

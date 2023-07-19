@@ -1,7 +1,8 @@
 import { Router, Request, Response } from "express";
 import { EVENT_SERIES, MANY_EVENT_SERIES } from "../constants/routes.ts";
+import { connectDB } from "../database/database.ts";
 
-const eventSeriesRouter = Router();
+// const db = await connectDB();
 
 const getEventSeries = async (req: Request, res: Response) => {
 

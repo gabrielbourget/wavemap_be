@@ -1,7 +1,8 @@
 import { Router, Request, Response } from "express";
 import { VENUE, VENUES } from "../constants/routes.ts";
+import { connectDB } from "../database/database.ts";
 
-const venueRouter = Router();
+// const db = await connectDB();
 
 const getVenue = async (req: Request, res: Response) => {
 

@@ -1,5 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
 import { AUTH_HEADER_KEY } from "../constants/index.ts";
+import { connectDB } from "../database/database.ts";
+
+// const db = await connectDB();
 
 export const isAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
   try {

@@ -7,7 +7,6 @@ import compression from "compression";
 import cors from "cors";
 
 import router from "./routers/index.ts";
-import { connectDB } from "./database/database.ts";
 import { BASE_URL } from "./constants/routes.ts";
 
 // import {
@@ -22,8 +21,6 @@ const {
 } = process.env;
 
 (async () => {
-
-  const db = await connectDB();
   
   const app = express();
   

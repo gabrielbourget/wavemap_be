@@ -1,4 +1,4 @@
-import { IUser } from ".";
+import { IUser } from "./User.ts";
 
 export interface IRegisterUserInput {
   name1: string;
@@ -14,7 +14,7 @@ export interface IRegisterUserInput {
 
 export interface IRegisterUserArgs {
   userDetails: IRegisterUserInput;
-  imageToUpload?: any;
+  imageToUpload?: unknown;
 }
 
 export interface ILoginInput {

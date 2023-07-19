@@ -5,6 +5,9 @@ import {
   REVOKE_REFRESH_TOKEN, VALIDATE_ACCT_VERIFICATION, RESEND_ACCT_VERIFICATION,
   REQUEST_PASSWORD_RESET, RESET_PASSWORD, CHANGE_PASSWORD
 } from "../constants/index.ts";
+import { connectDB } from "../database/database.ts";
+
+// const db = await connectDB();
 
 const login = async (req: Request, res: Response) => {
 
