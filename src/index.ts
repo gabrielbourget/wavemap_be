@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 import express from "express";
-import http from "http";
+// import http from "http";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import compression from "compression";
@@ -8,6 +8,7 @@ import cors from "cors";
 
 import router from "./routers/index.ts";
 import { BASE_URL } from "./constants/routes.ts";
+import { connectDB } from "./database/database.ts";
 
 // import {
 //   AUTH_HEADER_KEY, REFRESH_TOKEN_COOKIE_KEY,
@@ -23,6 +24,8 @@ const {
 (async () => {
   
   const app = express();
+
+  const db = await connectDB();
   
   app.use(cors({
     origin: CLIENT_URL,
@@ -36,7 +39,7 @@ const {
 
   app.use(BASE_URL, router);
   
-  const server = http.createServer(app);
+  // const server = http.createServer(app);
   
-  server.listen(SERVER_PORT, () => console.log(`wavemap backend running on port ${SERVER_PORT}`));
+  app.listen(SERVER_PORT, () => console.log(`wavemap backend running on port ${SERVER_PORT}`));
 })(); 

@@ -47,5 +47,13 @@ export const UserMetadata = pgTable('UserMetadata', {
   ID: uuid('ID').primaryKey(),
   createdOn: timestamp('createdOn', { withTimezone: true }),
   lastModifiedOn: timestamp('lastModifiedOn', { withTimezone: true }),
-  accountDisabled: boolean('accountDisabled').notNull().default(false)
+  accountDisabled: boolean('accountDisabled').notNull().default(false),
+  artistsCreated: integer('artistsCreated').notNull().default(0),
+  artistsModified: integer('artistsModified').notNull().default(0),
+  eventsCreated: integer('eventsCreated').notNull().default(0),
+  eventsModified: integer('eventsModified').notNull().default(0),
+  eventSeriesCreated: integer('eventSeriesCreated').notNull().default(0),
+  eventSeriesModified: integer('eventSeriesModified').notNull().default(0),
+  venuesCreated: integer('venuesCreated').notNull().default(0),
+  venuesModified: integer('venuesModified').notNull().default(0)
 });
