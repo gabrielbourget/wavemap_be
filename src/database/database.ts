@@ -1,6 +1,5 @@
 import { NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
-import postgres from "postgres";
 import * as schema from "./schema/index.ts";
 
 const { Client } = pg;
@@ -13,7 +12,6 @@ const {
 export const connectDB = async () => {
 
   try {
-    // const client = postgres(DB_URL);
     console.log(`Start of try block`);
     const client = new Client({
       host: DB_HOST,
@@ -27,8 +25,8 @@ export const connectDB = async () => {
     console.log(`DB PORT -> ${DB_PORT}`);
     console.log(`DB PASSWORD -> ${DB_PASSWORD}`);
     console.log(`DB DATABASE -> ${DB_DATABASE}`);
-    console.log(`After client creation: -> ${client}`);
-    console.dir(client, {depth: null})
+    // console.log(`After client creation: -> ${client}`);
+    // console.dir(client, {depth: null})
     await client.connect();
     console.log(`After client connection`);
     

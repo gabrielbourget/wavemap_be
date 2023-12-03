@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon",
+    "start": "infisical run -- bun run src/index.ts --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -46,7 +46,6 @@
     "@typescript-eslint/parser": "^6.1.0",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
-    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }

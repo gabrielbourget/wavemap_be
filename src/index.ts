@@ -9,6 +9,7 @@ import cors from "cors";
 import router from "./routers/index.ts";
 import { BASE_URL } from "./constants/routes.ts";
 import { connectDB } from "./database/database.ts";
+import { Artists } from "./database/schema/artists.ts";
 
 // import {
 //   AUTH_HEADER_KEY, REFRESH_TOKEN_COOKIE_KEY,
@@ -26,6 +27,8 @@ const {
   const app = express();
 
   const db = await connectDB();
+  const artistData = await db.select().from(Artists);
+  console.dir(artistData, { depth: null });
   
   app.use(cors({
     origin: CLIENT_URL,
