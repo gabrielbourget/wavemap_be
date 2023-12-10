@@ -1,8 +1,7 @@
 import { relations } from "drizzle-orm";
-import {
-  text, timestamp, pgTable, uuid, boolean, integer,
-  index, uniqueIndex, real,
-} from "drizzle-orm/pg-core";
+import { pgTable, uuid } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
 import { Artists, EventSeries, Events, Roles, Users, Venues } from "./index.ts";
 
 export const ArtistsEvents = pgTable('ArtistsEvents', {
@@ -10,6 +9,9 @@ export const ArtistsEvents = pgTable('ArtistsEvents', {
   artistID: uuid('artistID').references(() => Artists.ID),
   eventID: uuid('eventID').references(() => Events.ID)
 });
+
+export const insertArtistsEventsSchema = createInsertSchema(ArtistsEvents);
+export const selectArtistsEventsSchema = createSelectSchema(ArtistsEvents);
 
 export const artistEventsRelations = relations(ArtistsEvents, ({ one }) => ({
   artist: one(Artists, {
@@ -28,6 +30,9 @@ export const EventsVenues = pgTable('EventsVenues', {
   venueID: uuid('venueId').references(() => Venues.ID)
 });
 
+export const insertEventsVenuesSchema = createInsertSchema(EventsVenues);
+export const selectEventsVenuesSchema = createSelectSchema(EventsVenues);
+
 export const eventVenuesRelations = relations(EventsVenues, ({ one }) => ({
   event: one(Events, {
     fields: [EventsVenues.eventID],
@@ -45,6 +50,9 @@ export const EventsEventSeries = pgTable('EventsEventSeries', {
   eventSeriesID: uuid('eventSeriesID').references(() => EventSeries.ID),
 });
 
+export const insertEventsEventSeriesSchema = createInsertSchema(EventsEventSeries);
+export const selectEventsEventSeriesSchema = createSelectSchema(EventsEventSeries);
+
 export const eventsEventSeriesRelations = relations(EventsEventSeries, ({ one }) => ({
   event: one(Events, {
     fields: [EventsEventSeries.eventID],
@@ -61,6 +69,9 @@ export const UsersRoles = pgTable('UsersRoles', {
   userID: uuid('userID').references(() => Users.ID),
   roleID: uuid('roleID').references(() => Roles.ID)
 });
+
+export const insertUsersRolesSchema = createInsertSchema(UsersRoles);
+export const selectUsersRolesSchema = createSelectSchema(UsersRoles);
 
 export const usersRolesRelations = relations(UsersRoles, ({ one }) => ({
   user: one(Users, {
