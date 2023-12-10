@@ -27,8 +27,8 @@ const {
   const app = express();
 
   const db = await connectDB();
-  const artistData = await db.select().from(Artists);
-  console.dir(artistData, { depth: null });
+  // const artistData = await db.select().from(Artists);
+  // console.dir(artistData, { depth: null });
   
   app.use(cors({
     origin: CLIENT_URL,
@@ -43,6 +43,5 @@ const {
   app.use(BASE_URL, router);
   
   // const server = http.createServer(app);
-  
   app.listen(SERVER_PORT, () => console.log(`wavemap backend running on port ${SERVER_PORT}`));
 })(); 

@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "infisical run -- bun run src/index.ts --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migration:generate": "drizzle-kit generate:pg",
+    "migration:push": "drizzle-kit push:pg",
+    "migration:pull": "drizzle-kit pull:pg"
   },
   "author": "",
   "license": "ISC",
@@ -19,9 +22,9 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "drizzle-kit": "^0.19.8",
-    "drizzle-orm": "^0.27.2",
+    "drizzle-orm": "^0.29.1",
     "express": "^4.18.2",
+    "infisical-node": "^1.5.0",
     "jsonwebtoken": "^9.0.1",
     "mjml": "^4.14.1",
     "nodemailer": "^6.9.3",
@@ -44,6 +47,7 @@
     "@types/pg": "^8.10.2",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
+    "drizzle-kit": "^0.20.6",
     "eslint": "^8.45.0",
     "eslint-plugin-react": "^7.32.2",
     "ts-node": "^10.9.1",

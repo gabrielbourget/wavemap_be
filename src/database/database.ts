@@ -12,7 +12,6 @@ const {
 export const connectDB = async () => {
 
   try {
-    console.log(`Start of try block`);
     const client = new Client({
       host: DB_HOST,
       user: DB_USER,
@@ -20,18 +19,12 @@ export const connectDB = async () => {
       password: DB_PASSWORD,
       database: DB_DATABASE
     });
-    console.log(`DB HOST -> ${DB_HOST}`);
-    console.log(`DB USER -> ${DB_USER}`);
-    console.log(`DB PORT -> ${DB_PORT}`);
-    console.log(`DB PASSWORD -> ${DB_PASSWORD}`);
-    console.log(`DB DATABASE -> ${DB_DATABASE}`);
     // console.log(`After client creation: -> ${client}`);
     // console.dir(client, {depth: null})
     await client.connect();
     console.log(`After client connection`);
     
     const db: NodePgDatabase<typeof schema> = drizzle(client, { schema });
-    console.log(`After ORM db instance creation: -> ${db}`);
     console.log(db);
     return db;
   } catch (err) {

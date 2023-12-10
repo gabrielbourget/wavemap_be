@@ -1,0 +1,2019 @@
+{
+  "id": "29e1fa14-6e88-4e7c-98d1-24d84ab0de5a",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "ArtistImages": {
+      "name": "ArtistImages",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "artistID": {
+          "name": "artistID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ArtistImages_artistID_Artists_ID_fk": {
+          "name": "ArtistImages_artistID_Artists_ID_fk",
+          "tableFrom": "ArtistImages",
+          "tableTo": "Artists",
+          "columnsFrom": [
+            "artistID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ArtistLinkDestinations": {
+      "name": "ArtistLinkDestinations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ArtistLinks": {
+      "name": "ArtistLinks",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "artistID": {
+          "name": "artistID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkDestinationID": {
+          "name": "linkDestinationID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkURL": {
+          "name": "linkURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ArtistLinks_artistID_Artists_ID_fk": {
+          "name": "ArtistLinks_artistID_Artists_ID_fk",
+          "tableFrom": "ArtistLinks",
+          "tableTo": "Artists",
+          "columnsFrom": [
+            "artistID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ArtistLinks_linkDestinationID_ArtistLinkDestinations_ID_fk": {
+          "name": "ArtistLinks_linkDestinationID_ArtistLinkDestinations_ID_fk",
+          "tableFrom": "ArtistLinks",
+          "tableTo": "ArtistLinkDestinations",
+          "columnsFrom": [
+            "linkDestinationID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Artists": {
+      "name": "Artists",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdOn": {
+          "name": "createdOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdByID": {
+          "name": "createdByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedOn": {
+          "name": "lastModifiedOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedByID": {
+          "name": "lastModifiedByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "IDIndex": {
+          "name": "IDIndex",
+          "columns": [
+            "ID"
+          ],
+          "isUnique": true
+        },
+        "nameIndex": {
+          "name": "nameIndex",
+          "columns": [
+            "name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Artists_createdByID_Users_ID_fk": {
+          "name": "Artists_createdByID_Users_ID_fk",
+          "tableFrom": "Artists",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "createdByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Artists_lastModifiedByID_Users_ID_fk": {
+          "name": "Artists_lastModifiedByID_Users_ID_fk",
+          "tableFrom": "Artists",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "lastModifiedByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "DigitalEventLinkDestinations": {
+      "name": "DigitalEventLinkDestinations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "DigitalEventLocations": {
+      "name": "DigitalEventLocations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkDestinationID": {
+          "name": "linkDestinationID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkURL": {
+          "name": "linkURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "DigitalEventLocations_eventID_Events_ID_fk": {
+          "name": "DigitalEventLocations_eventID_Events_ID_fk",
+          "tableFrom": "DigitalEventLocations",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "DigitalEventLocations_linkDestinationID_DigitalEventLinkDestinations_ID_fk": {
+          "name": "DigitalEventLocations_linkDestinationID_DigitalEventLinkDestinations_ID_fk",
+          "tableFrom": "DigitalEventLocations",
+          "tableTo": "DigitalEventLinkDestinations",
+          "columnsFrom": [
+            "linkDestinationID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventImages": {
+      "name": "EventImages",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventImages_eventID_Events_ID_fk": {
+          "name": "EventImages_eventID_Events_ID_fk",
+          "tableFrom": "EventImages",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventLinkDestinations": {
+      "name": "EventLinkDestinations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventLinks": {
+      "name": "EventLinks",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkDestinationID": {
+          "name": "linkDestinationID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkURL": {
+          "name": "linkURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventLinks_eventID_Events_ID_fk": {
+          "name": "EventLinks_eventID_Events_ID_fk",
+          "tableFrom": "EventLinks",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventLinks_linkDestinationID_EventLinkDestinations_ID_fk": {
+          "name": "EventLinks_linkDestinationID_EventLinkDestinations_ID_fk",
+          "tableFrom": "EventLinks",
+          "tableTo": "EventLinkDestinations",
+          "columnsFrom": [
+            "linkDestinationID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventTicketLinkDestinations": {
+      "name": "EventTicketLinkDestinations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventTicketLinks": {
+      "name": "EventTicketLinks",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkDestinationID": {
+          "name": "linkDestinationID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkURL": {
+          "name": "linkURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventTicketLinks_eventID_Events_ID_fk": {
+          "name": "EventTicketLinks_eventID_Events_ID_fk",
+          "tableFrom": "EventTicketLinks",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventTicketLinks_linkDestinationID_EventTicketLinkDestinations_ID_fk": {
+          "name": "EventTicketLinks_linkDestinationID_EventTicketLinkDestinations_ID_fk",
+          "tableFrom": "EventTicketLinks",
+          "tableTo": "EventTicketLinkDestinations",
+          "columnsFrom": [
+            "linkDestinationID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventTypes": {
+      "name": "EventTypes",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Events": {
+      "name": "Events",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "eventTypeID": {
+          "name": "eventTypeID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cancelled": {
+          "name": "cancelled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "startDateTime": {
+          "name": "startDateTime",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "endDateTime": {
+          "name": "endDateTime",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "startTimeProvided": {
+          "name": "startTimeProvided",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "endTimeProvided": {
+          "name": "endTimeProvided",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdOn": {
+          "name": "createdOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdByID": {
+          "name": "createdByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedOn": {
+          "name": "lastModifiedOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedByID": {
+          "name": "lastModifiedByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "IDIndex": {
+          "name": "IDIndex",
+          "columns": [
+            "ID"
+          ],
+          "isUnique": true
+        },
+        "nameIndex": {
+          "name": "nameIndex",
+          "columns": [
+            "name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Events_eventTypeID_EventTypes_ID_fk": {
+          "name": "Events_eventTypeID_EventTypes_ID_fk",
+          "tableFrom": "Events",
+          "tableTo": "EventTypes",
+          "columnsFrom": [
+            "eventTypeID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Events_createdByID_Users_ID_fk": {
+          "name": "Events_createdByID_Users_ID_fk",
+          "tableFrom": "Events",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "createdByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Events_lastModifiedByID_Users_ID_fk": {
+          "name": "Events_lastModifiedByID_Users_ID_fk",
+          "tableFrom": "Events",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "lastModifiedByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "PhysicalEventLocations": {
+      "name": "PhysicalEventLocations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cityID": {
+          "name": "cityID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "countryId": {
+          "name": "countryId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "PhysicalEventLocations_eventID_Events_ID_fk": {
+          "name": "PhysicalEventLocations_eventID_Events_ID_fk",
+          "tableFrom": "PhysicalEventLocations",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "PhysicalEventLocations_cityID_Cities_ID_fk": {
+          "name": "PhysicalEventLocations_cityID_Cities_ID_fk",
+          "tableFrom": "PhysicalEventLocations",
+          "tableTo": "Cities",
+          "columnsFrom": [
+            "cityID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "PhysicalEventLocations_countryId_Countries_ID_fk": {
+          "name": "PhysicalEventLocations_countryId_Countries_ID_fk",
+          "tableFrom": "PhysicalEventLocations",
+          "tableTo": "Countries",
+          "columnsFrom": [
+            "countryId"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventSeries": {
+      "name": "EventSeries",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "eventSeriesTypeID": {
+          "name": "eventSeriesTypeID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdOn": {
+          "name": "createdOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdByID": {
+          "name": "createdByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedOn": {
+          "name": "lastModifiedOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedByID": {
+          "name": "lastModifiedByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "IDIndex": {
+          "name": "IDIndex",
+          "columns": [
+            "ID"
+          ],
+          "isUnique": true
+        },
+        "nameIndex": {
+          "name": "nameIndex",
+          "columns": [
+            "name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "EventSeries_eventSeriesTypeID_EventSeriesTypes_ID_fk": {
+          "name": "EventSeries_eventSeriesTypeID_EventSeriesTypes_ID_fk",
+          "tableFrom": "EventSeries",
+          "tableTo": "EventSeriesTypes",
+          "columnsFrom": [
+            "eventSeriesTypeID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventSeries_createdByID_Users_ID_fk": {
+          "name": "EventSeries_createdByID_Users_ID_fk",
+          "tableFrom": "EventSeries",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "createdByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventSeries_lastModifiedByID_Users_ID_fk": {
+          "name": "EventSeries_lastModifiedByID_Users_ID_fk",
+          "tableFrom": "EventSeries",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "lastModifiedByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventSeriesImages": {
+      "name": "EventSeriesImages",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventSeriesID": {
+          "name": "eventSeriesID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventSeriesImages_eventSeriesID_EventSeries_ID_fk": {
+          "name": "EventSeriesImages_eventSeriesID_EventSeries_ID_fk",
+          "tableFrom": "EventSeriesImages",
+          "tableTo": "EventSeries",
+          "columnsFrom": [
+            "eventSeriesID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventSeriesLinks": {
+      "name": "EventSeriesLinks",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventSeriesID": {
+          "name": "eventSeriesID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "eventLinkDestinationID": {
+          "name": "eventLinkDestinationID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkURL": {
+          "name": "linkURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventSeriesLinks_eventSeriesID_EventSeries_ID_fk": {
+          "name": "EventSeriesLinks_eventSeriesID_EventSeries_ID_fk",
+          "tableFrom": "EventSeriesLinks",
+          "tableTo": "EventSeries",
+          "columnsFrom": [
+            "eventSeriesID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventSeriesLinks_eventLinkDestinationID_EventLinkDestinations_ID_fk": {
+          "name": "EventSeriesLinks_eventLinkDestinationID_EventLinkDestinations_ID_fk",
+          "tableFrom": "EventSeriesLinks",
+          "tableTo": "EventLinkDestinations",
+          "columnsFrom": [
+            "eventLinkDestinationID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventSeriesTicketLinks": {
+      "name": "EventSeriesTicketLinks",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventSeriesID": {
+          "name": "eventSeriesID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "eventSeriesTicketLinkDestinationID": {
+          "name": "eventSeriesTicketLinkDestinationID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkURL": {
+          "name": "linkURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventSeriesTicketLinks_eventSeriesID_EventSeries_ID_fk": {
+          "name": "EventSeriesTicketLinks_eventSeriesID_EventSeries_ID_fk",
+          "tableFrom": "EventSeriesTicketLinks",
+          "tableTo": "EventSeries",
+          "columnsFrom": [
+            "eventSeriesID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventSeriesTicketLinks_eventSeriesTicketLinkDestinationID_EventTicketLinkDestinations_ID_fk": {
+          "name": "EventSeriesTicketLinks_eventSeriesTicketLinkDestinationID_EventTicketLinkDestinations_ID_fk",
+          "tableFrom": "EventSeriesTicketLinks",
+          "tableTo": "EventTicketLinkDestinations",
+          "columnsFrom": [
+            "eventSeriesTicketLinkDestinationID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventSeriesTypes": {
+      "name": "EventSeriesTypes",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VenueImages": {
+      "name": "VenueImages",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "venueID": {
+          "name": "venueID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "VenueImages_venueID_Venues_ID_fk": {
+          "name": "VenueImages_venueID_Venues_ID_fk",
+          "tableFrom": "VenueImages",
+          "tableTo": "Venues",
+          "columnsFrom": [
+            "venueID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VenueLinkDestinations": {
+      "name": "VenueLinkDestinations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VenueLinks": {
+      "name": "VenueLinks",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "venueId": {
+          "name": "venueId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkDestinationID": {
+          "name": "linkDestinationID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "linkURL": {
+          "name": "linkURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "VenueLinks_venueId_Venues_ID_fk": {
+          "name": "VenueLinks_venueId_Venues_ID_fk",
+          "tableFrom": "VenueLinks",
+          "tableTo": "Venues",
+          "columnsFrom": [
+            "venueId"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "VenueLinks_linkDestinationID_VenueLinkDestinations_ID_fk": {
+          "name": "VenueLinks_linkDestinationID_VenueLinkDestinations_ID_fk",
+          "tableFrom": "VenueLinks",
+          "tableTo": "VenueLinkDestinations",
+          "columnsFrom": [
+            "linkDestinationID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VenueLocations": {
+      "name": "VenueLocations",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "venueID": {
+          "name": "venueID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cityID": {
+          "name": "cityID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "countryId": {
+          "name": "countryId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "VenueLocations_venueID_Venues_ID_fk": {
+          "name": "VenueLocations_venueID_Venues_ID_fk",
+          "tableFrom": "VenueLocations",
+          "tableTo": "Venues",
+          "columnsFrom": [
+            "venueID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "VenueLocations_cityID_Cities_ID_fk": {
+          "name": "VenueLocations_cityID_Cities_ID_fk",
+          "tableFrom": "VenueLocations",
+          "tableTo": "Cities",
+          "columnsFrom": [
+            "cityID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "VenueLocations_countryId_Countries_ID_fk": {
+          "name": "VenueLocations_countryId_Countries_ID_fk",
+          "tableFrom": "VenueLocations",
+          "tableTo": "Countries",
+          "columnsFrom": [
+            "countryId"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "VenueStatuses": {
+      "name": "VenueStatuses",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Venues": {
+      "name": "Venues",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "capacity": {
+          "name": "capacity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "venueStatusID": {
+          "name": "venueStatusID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "phoneNumber": {
+          "name": "phoneNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdOn": {
+          "name": "createdOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "createdByID": {
+          "name": "createdByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedOn": {
+          "name": "lastModifiedOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedByID": {
+          "name": "lastModifiedByID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "IDIndex": {
+          "name": "IDIndex",
+          "columns": [
+            "ID"
+          ],
+          "isUnique": true
+        },
+        "nameIndex": {
+          "name": "nameIndex",
+          "columns": [
+            "name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "Venues_venueStatusID_VenueStatuses_ID_fk": {
+          "name": "Venues_venueStatusID_VenueStatuses_ID_fk",
+          "tableFrom": "Venues",
+          "tableTo": "VenueStatuses",
+          "columnsFrom": [
+            "venueStatusID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Venues_createdByID_Users_ID_fk": {
+          "name": "Venues_createdByID_Users_ID_fk",
+          "tableFrom": "Venues",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "createdByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Venues_lastModifiedByID_Users_ID_fk": {
+          "name": "Venues_lastModifiedByID_Users_ID_fk",
+          "tableFrom": "Venues",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "lastModifiedByID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "UserMetadata": {
+      "name": "UserMetadata",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "createdOn": {
+          "name": "createdOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "lastModifiedOn": {
+          "name": "lastModifiedOn",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "accountDisabled": {
+          "name": "accountDisabled",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "artistsCreated": {
+          "name": "artistsCreated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "artistsModified": {
+          "name": "artistsModified",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "eventsCreated": {
+          "name": "eventsCreated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "eventsModified": {
+          "name": "eventsModified",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "eventSeriesCreated": {
+          "name": "eventSeriesCreated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "eventSeriesModified": {
+          "name": "eventSeriesModified",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "venuesCreated": {
+          "name": "venuesCreated",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "venuesModified": {
+          "name": "venuesModified",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "UserSettings": {
+      "name": "UserSettings",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "defaultTheme": {
+          "name": "defaultTheme",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'light'"
+        },
+        "defaultDisplayMode": {
+          "name": "defaultDisplayMode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'list'"
+        },
+        "defaultLanguage": {
+          "name": "defaultLanguage",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'en'"
+        },
+        "setLanguageUsingBrowserSetting": {
+          "name": "setLanguageUsingBrowserSetting",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "itemsPerPage": {
+          "name": "itemsPerPage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 100
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Users": {
+      "name": "Users",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "imageURL": {
+          "name": "imageURL",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name1": {
+          "name": "name1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "name2": {
+          "name": "name2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "phoneNumber": {
+          "name": "phoneNumber",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "userSettingsID": {
+          "name": "userSettingsID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "userMetadataID": {
+          "name": "userMetadataID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "IDIndex": {
+          "name": "IDIndex",
+          "columns": [
+            "ID"
+          ],
+          "isUnique": true
+        },
+        "usernameIndex": {
+          "name": "usernameIndex",
+          "columns": [
+            "username"
+          ],
+          "isUnique": true
+        },
+        "emailIndex": {
+          "name": "emailIndex",
+          "columns": [
+            "email"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "Users_userSettingsID_UserSettings_ID_fk": {
+          "name": "Users_userSettingsID_UserSettings_ID_fk",
+          "tableFrom": "Users",
+          "tableTo": "UserSettings",
+          "columnsFrom": [
+            "userSettingsID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "Users_userMetadataID_UserMetadata_ID_fk": {
+          "name": "Users_userMetadataID_UserMetadata_ID_fk",
+          "tableFrom": "Users",
+          "tableTo": "UserMetadata",
+          "columnsFrom": [
+            "userMetadataID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Cities": {
+      "name": "Cities",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "countryID": {
+          "name": "countryID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "Cities_countryID_Countries_ID_fk": {
+          "name": "Cities_countryID_Countries_ID_fk",
+          "tableFrom": "Cities",
+          "tableTo": "Countries",
+          "columnsFrom": [
+            "countryID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Countries": {
+      "name": "Countries",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "Roles": {
+      "name": "Roles",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "ArtistsEvents": {
+      "name": "ArtistsEvents",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "artistID": {
+          "name": "artistID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "ArtistsEvents_artistID_Artists_ID_fk": {
+          "name": "ArtistsEvents_artistID_Artists_ID_fk",
+          "tableFrom": "ArtistsEvents",
+          "tableTo": "Artists",
+          "columnsFrom": [
+            "artistID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ArtistsEvents_eventID_Events_ID_fk": {
+          "name": "ArtistsEvents_eventID_Events_ID_fk",
+          "tableFrom": "ArtistsEvents",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventsEventSeries": {
+      "name": "EventsEventSeries",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "eventSeriesID": {
+          "name": "eventSeriesID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventsEventSeries_eventID_Events_ID_fk": {
+          "name": "EventsEventSeries_eventID_Events_ID_fk",
+          "tableFrom": "EventsEventSeries",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventsEventSeries_eventSeriesID_EventSeries_ID_fk": {
+          "name": "EventsEventSeries_eventSeriesID_EventSeries_ID_fk",
+          "tableFrom": "EventsEventSeries",
+          "tableTo": "EventSeries",
+          "columnsFrom": [
+            "eventSeriesID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "EventsVenues": {
+      "name": "EventsVenues",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "eventID": {
+          "name": "eventID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "venueId": {
+          "name": "venueId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "EventsVenues_eventID_Events_ID_fk": {
+          "name": "EventsVenues_eventID_Events_ID_fk",
+          "tableFrom": "EventsVenues",
+          "tableTo": "Events",
+          "columnsFrom": [
+            "eventID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "EventsVenues_venueId_Venues_ID_fk": {
+          "name": "EventsVenues_venueId_Venues_ID_fk",
+          "tableFrom": "EventsVenues",
+          "tableTo": "Venues",
+          "columnsFrom": [
+            "venueId"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "UsersRoles": {
+      "name": "UsersRoles",
+      "schema": "",
+      "columns": {
+        "ID": {
+          "name": "ID",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "userID": {
+          "name": "userID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "roleID": {
+          "name": "roleID",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "UsersRoles_userID_Users_ID_fk": {
+          "name": "UsersRoles_userID_Users_ID_fk",
+          "tableFrom": "UsersRoles",
+          "tableTo": "Users",
+          "columnsFrom": [
+            "userID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "UsersRoles_roleID_Roles_ID_fk": {
+          "name": "UsersRoles_roleID_Roles_ID_fk",
+          "tableFrom": "UsersRoles",
+          "tableTo": "Roles",
+          "columnsFrom": [
+            "roleID"
+          ],
+          "columnsTo": [
+            "ID"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
