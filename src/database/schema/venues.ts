@@ -3,6 +3,7 @@ import {
   text, timestamp, pgTable, uuid, integer, index, uniqueIndex, real,
 } from "drizzle-orm/pg-core";
 import { Cities, Countries, EventsVenues, Users } from "./index.ts";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const Venues = pgTable('Venues', {
   ID: uuid('ID').primaryKey(),
@@ -27,6 +28,9 @@ export const Venues = pgTable('Venues', {
   };
 });
 
+export const insertVenuesSchema = createInsertSchema(Venues);
+export const selectVenuesSchema = createSelectSchema(Venues);
+
 export const venuesRelations = relations(Venues, ({ one, many }) => ({
   events: many(EventsVenues),
   links: many(VenueLinks),
@@ -42,6 +46,9 @@ export const VenueLinks = pgTable('VenueLinks', {
   linkDestinationID: uuid('linkDestinationID').references(() => VenueLinkDestinations.ID),
   linkURL: text('linkURL')
 });
+
+export const insertVenueLinksSchema = createInsertSchema(VenueLinks);
+export const selectVenueLinksSchema = createSelectSchema(VenueLinks);
 
 export const venuesLinksRelations = relations(VenueLinks, ({ one }) => ({
   venue: one(Venues, {
@@ -60,6 +67,9 @@ export const VenueLocations = pgTable('VenueLocations', {
   cityID: uuid('cityID').references(() => Cities.ID),
   countryID: uuid('countryId').references(() => Countries.ID)
 });
+
+export const insertVenueLocationsSchema = createInsertSchema(VenueLocations);
+export const selectVenueLocationsSchema = createSelectSchema(VenueLocations);
 
 export const venueLocationsRelations = relations(VenueLocations, ({ one }) => ({
   venue: one(Venues, {
@@ -81,16 +91,25 @@ export const VenueStatuses = pgTable('VenueStatuses', {
   name: text('name').notNull()
 });
 
+export const insertVenueStatusesSchema = createInsertSchema(VenueStatuses);
+export const selectVenueStatusesSchema = createSelectSchema(VenueStatuses);
+
 export const VenueLinkDestinations = pgTable('VenueLinkDestinations', {
   ID: uuid('ID').primaryKey(),
   name: text('name').notNull()
 });
+
+export const insertVenueLinkDestinationsSchema = createInsertSchema(VenueLinkDestinations);
+export const selectVenueLinkDestinationsSchema = createSelectSchema(VenueLinkDestinations);
 
 export const VenueImages = pgTable('VenueImages', {
   ID: uuid('ID').primaryKey(),
   venueID: uuid('venueID').references(() => Venues.ID),
   imageURL: text('imageURL').notNull()
 });
+
+export const insertVenueImagesSchema = createInsertSchema(VenueImages);
+export const selectVenueImagesSchema = createSelectSchema(VenueImages);
 
 export const venueImagesRelations = relations(VenueImages, ({ one }) => ({
   venue: one(Venues, {
