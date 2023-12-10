@@ -1,8 +1,9 @@
 import { relations } from "drizzle-orm";
 import {
-  text, timestamp, pgTable, uuid, boolean, integer,
-  index, uniqueIndex, real,
+  text, timestamp, pgTable, uuid, index, uniqueIndex,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
 import { EventLinkDestinations, EventTicketLinkDestinations, EventsEventSeries, Users } from "./index.ts";
 
 export const EventSeries = pgTable('EventSeries', {
@@ -22,6 +23,9 @@ export const EventSeries = pgTable('EventSeries', {
   };
 });
 
+export const insertEventSeriesSchema = createInsertSchema(EventSeries);
+export const selectEventSeriesSchema = createSelectSchema(EventSeries);
+
 export const eventSeriesRelations = relations(EventSeries, ({ one, many }) => ({
   eventSeriesType: one(EventSeriesTypes, {
     fields: [EventSeries.eventSeriesTypeID],
@@ -38,6 +42,9 @@ export const EventSeriesLinks = pgTable('EventSeriesLinks', {
   eventLinkDestinationID: uuid('eventLinkDestinationID').references(() => EventLinkDestinations.ID),
   linkURL: text('linkURL').notNull()
 });
+
+export const insertEventSeriesLinksSchema = createInsertSchema(EventSeriesLinks);
+export const selectEventSeriesLinksSchema = createSelectSchema(EventSeriesLinks);
 
 export const eventSeriesLinksRelations = relations(EventSeriesLinks, ({ one }) => ({
   eventSeries: one(EventSeries, {
@@ -58,6 +65,9 @@ export const EventSeriesTicketLinks = pgTable('EventSeriesTicketLinks', {
   linkURL: text('linkURL').notNull()
 });
 
+export const insertEventSeriesTicketLinksSchema = createInsertSchema(EventSeriesTicketLinks);
+export const selectEventSeriesTicketLinksSchema = createSelectSchema(EventSeriesTicketLinks);
+
 export const eventSeriesTicketLinksRelations = relations(EventSeriesTicketLinks, ({ one }) => ({
   eventSeries: one(EventSeries, {
     fields: [EventSeriesTicketLinks.eventSeriesID],
@@ -74,11 +84,17 @@ export const EventSeriesTypes = pgTable('EventSeriesTypes', {
   name: text('name').notNull()
 });
 
+export const insertEventSeriesTypesSchema = createInsertSchema(EventSeriesTypes);
+export const selectEventSeriesTypesSchema = createSelectSchema(EventSeriesTypes);
+
 export const EventSeriesImages = pgTable('EventSeriesImages', {
   ID: uuid('ID').primaryKey(),
   eventSeriesID: uuid('eventSeriesID').references(() => EventSeries.ID),
   imageURL: text('imageURL').notNull()
 });
+
+export const insertEventSeriesImagesSchema = createInsertSchema(EventSeriesImages);
+export const selectEventSeriesImagesSchema = createSelectSchema(EventSeriesImages);
 
 export const eventSeriesImagesRelations = relations(EventSeriesImages, ({ one }) => ({
   eventSeries: one(EventSeries, {
