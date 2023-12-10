@@ -27,9 +27,12 @@ module.exports = {
     },
     "plugins": [
         "@typescript-eslint",
+        "drizzle"
     ],
     "rules": {
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "off"
+        "no-unused-vars": "error",
+        "@typescript-eslint/no-unused-vars": "error",
+        "drizzle/enforce-delete-with-where": "error",
+        "drizzle/enforce-update-with-where": "error"
     }
 }
