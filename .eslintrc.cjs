@@ -30,7 +30,7 @@ module.exports = {
         "drizzle"
     ],
     "rules": {
-        "no-unused-vars": "error",
+        "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error",
         "drizzle/enforce-delete-with-where": "error",
         "drizzle/enforce-update-with-where": "error"

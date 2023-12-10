@@ -2,6 +2,8 @@ import { relations } from "drizzle-orm";
 import {
   text, timestamp, pgTable, uuid, boolean, index, uniqueIndex,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
 import { ArtistsEvents, Cities, Countries, EventsVenues, Users } from "./index.ts";
 
 export const Events = pgTable('Events', {
@@ -26,6 +28,9 @@ export const Events = pgTable('Events', {
   };
 });
 
+export const insertEventsSchema = createInsertSchema(Events);
+export const selectEventsSchema = createSelectSchema(Events);
+
 export const eventsRelations = relations(Events, ({ one, many }) => ({
   eventType: one(EventTypes, {
     fields: [Events.eventTypeID],
@@ -47,6 +52,9 @@ export const EventLinks = pgTable('EventLinks', {
   linkURL: text('linkURL').notNull()
 });
 
+export const insertEventLinksSchema = createInsertSchema(EventLinks);
+export const selectEventLinksSchema = createSelectSchema(EventLinks);
+
 export const eventLinksRelations = relations(EventLinks, ({ one }) => ({
   event: one(Events, {
     fields: [EventLinks.eventID],
@@ -65,7 +73,10 @@ export const EventTicketLinks = pgTable('EventTicketLinks', {
   linkURL: text('linkURL').notNull()
 });
 
-export const eventTicketLinksRelations = relations(EventTicketLinks, ({ one, many }) => ({
+export const insertEventTicketLinksSchema = createInsertSchema(EventTicketLinks);
+export const selectEventTicketLinksSchema = createSelectSchema(EventTicketLinks);
+
+export const eventTicketLinksRelations = relations(EventTicketLinks, ({ one }) => ({
   events: one(Events, {
     fields: [EventTicketLinks.eventID],
     references: [Events.ID]
@@ -82,6 +93,9 @@ export const EventImages = pgTable('EventImages', {
   imageURL: text('imageURL').notNull()
 });
 
+export const insertEventImagesSchema = createInsertSchema(EventImages);
+export const selectEventImagesSchema = createSelectSchema(EventImages);
+
 export const eventImagesRelations = relations(EventImages, ({ one }) => ({
   event: one(Events, {
     fields: [EventImages.eventID],
@@ -95,6 +109,9 @@ export const PhysicalEventLocations = pgTable('PhysicalEventLocations', {
   cityID: uuid('cityID').references(() => Cities.ID),
   countryID: uuid('countryId').references(() => Countries.ID)
 });
+
+export const insertPhysicalEventLocationsSchema = createInsertSchema(PhysicalEventLocations);
+export const selectPhysicalEventLocationsSchema = createSelectSchema(PhysicalEventLocations);
 
 export const physicalEventLocationsRelations = relations(PhysicalEventLocations, ({ one }) => ({
   event: one(Events, {
@@ -118,6 +135,9 @@ export const DigitalEventLocations = pgTable('DigitalEventLocations', {
   linkURL: text('linkURL').notNull()
 });
 
+export const insertDigitalEventLocationsSchema = createInsertSchema(DigitalEventLocations);
+export const selectDigitalEventLocationsSchema = createSelectSchema(DigitalEventLocations);
+
 export const digitalEventLocationsRelations = relations(DigitalEventLocations, ({ one }) => ({
   event: one(Events, {
     fields: [DigitalEventLocations.eventID],
@@ -134,17 +154,29 @@ export const DigitalEventLinkDestinations = pgTable('DigitalEventLinkDestination
   name: text('name').notNull()
 });
 
+export const insertDigitalEventLinkDestinationsSchema = createInsertSchema(DigitalEventLinkDestinations);
+export const selectDigitalEventLinkDestinationsSchema = createSelectSchema(DigitalEventLinkDestinations);
+
 export const EventTypes = pgTable('EventTypes', {
   ID: uuid('ID').primaryKey(),
   name: text('name').notNull()
 });
+
+export const insertEventTypesSchema = createInsertSchema(EventTypes);
+export const selectEventTypesSchema = createSelectSchema(EventTypes);
 
 export const EventLinkDestinations = pgTable('EventLinkDestinations', {
   ID: uuid('ID').primaryKey(),
   name: text('name').notNull()
 });
 
+export const insertEventLinkDestinationsSchema = createInsertSchema(EventLinkDestinations);
+export const selectEventLinkDestinationsSchema = createSelectSchema(EventLinkDestinations);
+
 export const EventTicketLinkDestinations = pgTable('EventTicketLinkDestinations', {
   ID: uuid('ID').primaryKey(),
   name: text('name').notNull()
 });
+
+export const insertEventTicketLinkDestinationsSchema = createInsertSchema(EventTicketLinkDestinations);
+export const selectEventTicketLinkDestinationsSchema = createSelectSchema(EventTicketLinkDestinations);

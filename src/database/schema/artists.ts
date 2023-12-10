@@ -1,8 +1,8 @@
 import { relations } from "drizzle-orm";
 import {
-  text, timestamp, pgTable, uuid, boolean, integer,
-  index, uniqueIndex, real,
+  text, timestamp, pgTable, uuid, index, uniqueIndex,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { ArtistsEvents, Users } from "./index.ts";
 
 export const Artists = pgTable("Artists", {
@@ -21,6 +21,9 @@ export const Artists = pgTable("Artists", {
   };
 });
 
+export const insertArtistSchema = createInsertSchema(Artists);
+export const selectArtistSchema = createSelectSchema(Artists);
+
 export const artistsRelations = relations(Artists, ({ many }) => ({
   links: many(ArtistLinks),
   images: many(ArtistImages),
@@ -33,6 +36,9 @@ export const ArtistLinks = pgTable("ArtistLinks", {
   linkDestinationID: uuid('linkDestinationID').references(() => ArtistLinkDestinations.ID),
   linkURL: text('linkURL').notNull()
 });
+
+export const insertArtistLinksSchema = createInsertSchema(ArtistLinks);
+export const selectArtistLinksSchema = createSelectSchema(ArtistLinks);
 
 export const artistLinksRelations = relations(ArtistLinks, ({ one }) => ({
   artist: one(Artists, {
@@ -50,11 +56,17 @@ export const ArtistLinkDestinations = pgTable('ArtistLinkDestinations', {
   name: text('name').notNull()
 });
 
+export const insertArtistLinkDestinationsSchema = createInsertSchema(ArtistLinkDestinations);
+export const selectArtistLinkDestinationsSchema = createSelectSchema(ArtistLinkDestinations);
+
 export const ArtistImages = pgTable('ArtistImages', {
   ID: uuid('ID').primaryKey(),
   artistID: uuid('artistID').references(() => Artists.ID),
   imageURL: text('imageURL').notNull()
 });
+
+export const insertArtistImagesSchema = createInsertSchema(ArtistImages);
+export const selectArtistImagesSchema = createSelectSchema(ArtistImages);
 
 export const artistImagesRelations = relations(ArtistImages, ({ one }) => ({
   artist: one(Artists, {
