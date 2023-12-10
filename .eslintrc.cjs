@@ -6,7 +6,6 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react/recommended"
     ],
     "overrides": [
         {
@@ -28,7 +27,6 @@ module.exports = {
     },
     "plugins": [
         "@typescript-eslint",
-        "react"
     ],
     "rules": {
         "no-unused-vars": "off",
