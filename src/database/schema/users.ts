@@ -2,6 +2,7 @@ import { relations } from "drizzle-orm";
 import {
   text, timestamp, pgTable, uuid, boolean, integer, uniqueIndex,
 } from "drizzle-orm/pg-core";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 // - TODO: -> Apply unique constraints to username and email once it is implemented in Drizzle ORM
 export const Users = pgTable('Users', {
@@ -21,6 +22,9 @@ export const Users = pgTable('Users', {
     emailIndex: uniqueIndex("emailIndex").on(Users.email)
   };
 });
+
+export const insertUsersSchema = createInsertSchema(Users);
+export const selectUsersSchema = createSelectSchema(Users);
 
 export const usersRelations = relations(Users, ({one}) => ({
   settings: one(UserSettings, {
@@ -42,6 +46,8 @@ export const UserSettings = pgTable('UserSettings', {
   itemsPerPage: integer('itemsPerPage').notNull().default(100)
 });
 
+export const insertUserSettingsSchema = createInsertSchema(UserSettings);
+export const selectUserSettingsSchema = createSelectSchema(UserSettings);
 
 export const UserMetadata = pgTable('UserMetadata', {
   ID: uuid('ID').primaryKey(),
@@ -57,3 +63,6 @@ export const UserMetadata = pgTable('UserMetadata', {
   venuesCreated: integer('venuesCreated').notNull().default(0),
   venuesModified: integer('venuesModified').notNull().default(0)
 });
+
+export const insertUserMetadataSchema = createInsertSchema(UserMetadata);
+export const selectUserMetadataSchema = createSelectSchema(UserMetadata);
